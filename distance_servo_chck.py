@@ -12,7 +12,7 @@ raw_input()				#Wait for input to start
 servo(servo_pos)
 dist=us_dist(15)			#Find the distance of the object in front
 print "Servo @: ",servo_pos," Distance: ",dist," cm"
-time.sleep(.1)			# Take a break in between operations. 
+time.sleep(.5)			# Take a break in between operations. 
 
 servo_pos = 30 				# Prevent camera installation issues
 
@@ -22,7 +22,7 @@ while True:
 	dist=us_dist(15)
 	print "Servo @: ",servo_pos," Distance: ",dist," cm"
 	servo_pos=servo_pos+20
-	time.sleep(.1)		# Take a break in between operations. 
+	time.sleep(.5)		# Take a break in between operations. 
 	if servo_pos>150:
 		break	
 	
