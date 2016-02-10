@@ -14,7 +14,7 @@ dist=us_dist(15)			#Find the distance of the object in front
 print "Servo @: ",servo_pos," Distance: ",dist," cm"
 time.sleep(.1)			# Take a break in between operations. 
 
-servo_pos = 50 				# Prevent camera installation issues
+servo_pos = 30 				# Prevent camera installation issues
 
 while True:
 	#Start Left to Right
@@ -23,7 +23,7 @@ while True:
 	print "Servo @: ",servo_pos," Distance: ",dist," cm"
 	servo_pos=servo_pos+20
 	time.sleep(.1)		# Take a break in between operations. 
-	if servo_pos>130:
+	if servo_pos>150:
 		break	
 	
 	 
