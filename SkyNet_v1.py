@@ -5,8 +5,8 @@ import sys
 import time
 
 full_scan = 180
-deg_scan = 160
-start_scan=20
+deg_scan = 140
+start_scan=40
 increm = 10
 stop_distance = 20
 tracker=0   
@@ -42,8 +42,9 @@ def decision():
 
 def move_forward():
     #GoPiGo moves forward a short distance
+    enc_tgt(1,1,18)
     fwd()
-    time.sleep(.2)
+    time.sleep(1)
     stop()
     
 def move_backward():
