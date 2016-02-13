@@ -39,6 +39,7 @@ def decision():
         turn_right()
     else:
         print("turning around")
+        turn_around()
 
 def move_forward():
     #GoPiGo moves forward a short distance
@@ -47,21 +48,21 @@ def move_forward():
     time.sleep(1)
     stop()
     
-def move_backward():
+def turn_around():
     #GoPiGo moves backward a short distance
     left()
-    time.sleep(.5)
+    time.sleep(.8)
     left()
-    time.sleep(.5)
+    time.sleep(.8)
     stop()
     
 def turn_left():
     left()
-    time.sleep(.5)
+    time.sleep(.8)
     stop()
 def turn_right():
     right()
-    time.sleep(.5)
+    time.sleep(.8)
     stop()
 
 print "Press ENTER to begin"
