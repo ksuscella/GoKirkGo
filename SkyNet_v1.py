@@ -42,28 +42,30 @@ def decision():
 
 def move_forward():
     #GoPiGo moves forward a short distance
-	enc_tgt(1,1,18)	#Set encoder targetting. Stop after 4 rotations of both the wheels
-	fwd()
-	time.sleep(.2)
+    fwd()
+    time.sleep(.2)
+    stop()
+    
 def move_backward():
     #GoPiGo moves backward a short distance
-    enc_tgt(1,1,18) #Set encoder targetting.  Stop after 4 rotations of both the wheels
-    bwd()
-    time.sleep(.02)
-    rotation()
-    time.sleep(.01)
+    left()
+    time.sleep(.5)
+    left()
+    time.sleep(.5)
     stop()
+    
 def turn_left():
     left()
-    time.sleep(1)
+    time.sleep(.5)
     stop()
 def turn_right():
     right()
-    time.sleep(1)
+    time.sleep(.5)
     stop()
 
 print "Press ENTER to begin"
 raw_input()				#Wait for input to start
+set_speed(150)
 
 while True:
     servo_int()
