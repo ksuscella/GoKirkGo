@@ -17,8 +17,8 @@ def servo_int():
         servo(servo_pos)
         time.sleep(.02)
         dist=us_dist(15)			#Find the distance of the object in front
-        situation[i] = dist
-
+        situation[servo_pos] = dist
+        
 def decision():
     #Step 1 - Lets see if we can go straight
     middle = deg_scan/2 

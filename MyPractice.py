@@ -14,6 +14,7 @@ def servo():
     #Run Through Scan
     for i in xrange(start_scan,deg_scan,increm):         #loop by 20
         situation[i] = random.randint(0,30)
+    print(situation)
 
 def decision():
     #Step 1 - Lets see if we can go straight
