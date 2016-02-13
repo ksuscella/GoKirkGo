@@ -4,8 +4,9 @@ import math
 import sys
 import time
 
-deg_scan = 180
-start_scan=10
+full_scan = 180
+deg_scan = 160
+start_scan=20
 increm = 10
 stop_distance = 20
 tracker=0   
@@ -21,7 +22,7 @@ def servo_int():
         
 def decision():
     #Step 1 - Lets see if we can go straight
-    middle = deg_scan/2 
+    middle = full_scan/2 
     
     #Should we go straight?
     if situation[middle] > stop_distance:
@@ -48,10 +49,18 @@ def move_backward():
     #GoPiGo moves backward a short distance
     enc_tgt(1,1,18) #Set encoder targetting.  Stop after 4 rotations of both the wheels
     bwd()
+    time.sleep(.02)
+    rotation()
+    time.sleep(.01)
+    stop()
 def turn_left():
-    left_rot()
+    left()
+    time.sleep(1)
+    stop()
 def turn_right():
-    right_rot()
+    right()
+    time.sleep(1)
+    stop()
 
 print "Press ENTER to begin"
 raw_input()				#Wait for input to start
