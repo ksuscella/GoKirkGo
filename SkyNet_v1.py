@@ -11,7 +11,7 @@ stop_distance = 20
 tracker=0   
 situation = {}
 
-def servo():
+def servo_int():
     #Run Through Scan
     for servo_pos in xrange(start_scan,deg_scan,increm):
         servo(servo_pos)
@@ -57,7 +57,7 @@ print "Press ENTER to begin"
 raw_input()				#Wait for input to start
 
 while True:
-    servo()
+    servo_int()
     decision()
     time.sleep(1)
     tracker = tracker + 1
