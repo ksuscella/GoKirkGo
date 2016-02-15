@@ -99,7 +99,7 @@ if len(args) == 7:  #Use defaults if arguments don't match
     arg_LtRt_sleep = float(args[3])
     arg_turn_sleep = float(args[4])
     arg_robot_speed = float(args[5])
-    arg_decisions = ing(args[6])
+    arg_decisions = int(args[6])
 
 
 print "Press ENTER to begin"
