@@ -93,13 +93,13 @@ def turn_right():
 args = sys.argv[1:] #Get Arguments
 if len(args) == 7:  #Use defaults if arguments don't match
     #Take Arguments
-    arg_stop_dist = float(args[0])
-    arg_rot_number = float(args[1])
+    arg_stop_dist = int(args[0])
+    arg_rot_number = int(args[1])
     arg_fwd_sleep = float(args[2])
     arg_LtRt_sleep = float(args[3])
     arg_turn_sleep = float(args[4])
     arg_robot_speed = float(args[5])
-    arg_decisions = float(args[6])
+    arg_decisions = ing(args[6])
 
 
 print "Press ENTER to begin"
