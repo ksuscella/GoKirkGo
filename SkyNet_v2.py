@@ -98,7 +98,7 @@ if len(args) == 7:  #Use defaults if arguments don't match
     arg_fwd_sleep = float(args[2])
     arg_LtRt_sleep = float(args[3])
     arg_turn_sleep = float(args[4])
-    arg_robot_speed = float(args[5])
+    arg_robot_speed = int(args[5])
     arg_decisions = int(args[6])
 
 
