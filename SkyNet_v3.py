@@ -52,7 +52,7 @@ def decision():
 
 def move_forward():
     #GoPiGo moves forward a short distance
-    enc_tgt(1,1,arg_rot_number)
+    enc_tgt(1,1,arg_rot_fwd)
     fwd()
     
 def turn_around():
