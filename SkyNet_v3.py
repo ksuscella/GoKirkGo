@@ -60,21 +60,21 @@ def turn_around():
     
     #Pick which way to turn
     if situation[deg_scan-increm] > situation[start_scan]:
-        enc_tgt(0,1,arg_rot_bck)
-        fwd()
+        enc_tgt(1,1,arg_rot_bck)
+        left_rot()
     else:
-        enc_tgt(1,0,arg_rot_bck)
-        fwd()
+        enc_tgt(1,1,arg_rot_bck)
+        right_rot()
     
 def turn_left():
     #Turn Left
-    enc_tgt(0,1,arg_rot_side)
-    fwd()
+    enc_tgt(1,1,arg_rot_side)
+    left_rot()
     
 def turn_right():
     #Turn Right
-    enc_tgt(1,0,arg_rot_side)
-    fwd()
+    enc_tgt(1,1,arg_rot_side)
+    right_rot()
 
 ### PASS IN ARGUMENTS ###
 #0 - STOP DISTANCE
