@@ -85,7 +85,7 @@ def turn_right():
 #5 - NUMBER OF DECISION ITERATIONS
 
 args = sys.argv[1:] #Get Arguments
-if len(args) == 7:  #Use defaults if arguments don't match
+if len(args) == 6:  #Use defaults if arguments don't match
     #Take Arguments
     arg_stop_dist = int(args[0])
     arg_rot_fwd = int(args[1])
