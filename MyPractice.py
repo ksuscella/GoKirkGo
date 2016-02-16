@@ -12,7 +12,7 @@ print sys.argv[1:]
 
 arguments = sys.argv[1:]
 
-print arguments[0]
+print float(arguments[0])
 
 for a in arguments:
     print(a)

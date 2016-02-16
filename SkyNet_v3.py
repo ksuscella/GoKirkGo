@@ -7,10 +7,9 @@ import time
 #argument variables (pass in as args to callibrate)
 # -- --------------------------
 arg_stop_dist = 40
-arg_rot_number = 18
-arg_fwd_sleep = 1
-arg_LtRt_sleep = .72
-arg_turn_sleep = 1.3
+arg_rot_fwd = 18
+arg_rot_side = 9
+arg_rot_bck = 18
 arg_robot_speed = 150
 arg_decisions = 10
 # -- ---------------------------
@@ -55,51 +54,45 @@ def move_forward():
     #GoPiGo moves forward a short distance
     enc_tgt(1,1,arg_rot_number)
     fwd()
-    time.sleep(arg_fwd_sleep)
-    stop()
     
 def turn_around():
     #Turn Around
     
     #Pick which way to turn
     if situation[deg_scan-increm] > situation[start_scan]:
-        left()
+        enc_tgt(0,1,arg_rot_bck)
+        fwd()
     else:
-        right()
-    time.sleep(arg_turn_sleep)
-    stop()
+        enc_tgt(1,0,arg_rot_bck)
+        fwd()
     
 def turn_left():
     #Turn Left
-    left()
-    time.sleep(arg_LtRt_sleep)
-    stop()
+    enc_tgt(0,1,arg_rot_side)
+    fwd()
     
 def turn_right():
     #Turn Right
-    right()
-    time.sleep(arg_LtRt_sleep)
-    stop()
+    enc_tgt(1,0,arg_rot_side)
+    fwd()
 
 ### PASS IN ARGUMENTS ###
-#1 - STOP DISTANCE
-#2 - FORWARD (ROTATIONS)
-#3 - FORWARD (SLEEP)
-#4 - LEFT OR RIGHT (SECONDS)
-#5 - TURN AROUND (SECONDS)
-#6 - SET SPEED
-#7 - NUMBER OF DECISION ITERATIONS
+#0 - STOP DISTANCE
+#1 - FORWARD (ROTATIONS)
+#2 - SIDE (ROTATIONS)
+#3 - BACK (ROTATIONS)
+#4 - SET SPEED
+#5 - NUMBER OF DECISION ITERATIONS
 
 args = sys.argv[1:] #Get Arguments
 if len(args) == 7:  #Use defaults if arguments don't match
     #Take Arguments
     arg_stop_dist = int(args[0])
-    arg_rot_number = int(args[1])
-    arg_fwd_sleep = float(args[2])
-    arg_LtRt_sleep = float(args[3])
-    arg_turn_sleep = float(args[4])
-    arg_robot_speed = int(args[5])
-    arg_decisions = int(args[6])
+    arg_rot_fwd = int(args[1])
+    arg_rot_side = int(args[2])
+    arg_rot_bck = int(args[3])
+    arg_robot_speed = int(args[4])
+    arg_decisions = int(args[5])
 
 
 print "Press ENTER to begin"
@@ -110,6 +103,7 @@ while True:
     servo_int()
     decision()
     time.sleep(1)
+    stop()
     tracker = tracker + 1
     if tracker > arg_decisions:
         break
