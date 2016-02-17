@@ -1,4 +1,8 @@
 from gopigo import *
+# ###########################################################################################
+# Project for an autonomous robot
+# ###########################################################################################
+
 import random
 import math
 import sys
@@ -15,8 +19,8 @@ arg_decisions = 10
 # -- ---------------------------
 
 full_scan = 180
-deg_scan = 140
-start_scan=40
+deg_scan = 170
+start_scan=10
 increm = 10
 tracker=0   
 situation = {}
@@ -25,7 +29,7 @@ def servo_int():
     #Run Through Scan
     for servo_pos in xrange(start_scan,deg_scan,increm):
         servo(servo_pos)
-        time.sleep(.02)
+        time.sleep(.01)
         dist=us_dist(15)			#Find the distance of the object in front
         situation[servo_pos] = dist
         
