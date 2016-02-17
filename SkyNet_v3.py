@@ -6,10 +6,10 @@ import time
 
 #argument variables (pass in as args to callibrate)
 # -- --------------------------
-arg_stop_dist = 40
-arg_rot_fwd = 18
-arg_rot_side = 9
-arg_rot_bck = 18
+arg_stop_dist = 30
+arg_rot_fwd = 20
+arg_rot_side = 6
+arg_rot_bck = 14
 arg_robot_speed = 150
 arg_decisions = 10
 # -- ---------------------------
@@ -98,6 +98,7 @@ if len(args) == 6:  #Use defaults if arguments don't match
 print "Press ENTER to begin"
 raw_input()				#Wait for input to start
 set_speed(arg_robot_speed)
+enable_servo()
 
 while True:
     servo_int()
@@ -108,3 +109,4 @@ while True:
     if tracker > arg_decisions:
         break
 
+disable_servo()
