@@ -99,17 +99,17 @@ def decision():
     # Step 2 - Try Left?
     elif full_turn("left"): #move left?
         print("moving left " + str(situation[deg_scan-increm]) + "cm")
-        turn_track = turn_track+1
+        #turn_track = turn_track+1
         turn_left()
     # Step 3 - Try Right?
     elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_scan])+"cm")
-        turn_track = turn_track+1
+        #turn_track = turn_track+1
         turn_right()
     # Step 4 - Turn Around
     else:
         print("turning around")
-        turn_track = turn_track+1
+        #turn_track = turn_track+1
         turn_around()
 
 def move_forward():
