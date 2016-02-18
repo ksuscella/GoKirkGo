@@ -37,6 +37,8 @@ def servo_int():
         time.sleep(.01)
         dist=us_dist(15)			#Find the distance of the object in front
         situation[servo_pos] = dist
+    
+    print(situation)
 
 def full_straight():
     side1 = []
