@@ -10,20 +10,25 @@ import time
 
 #argument variables (pass in as args to callibrate)
 # -- --------------------------
-arg_stop_dist = 30
-arg_rot_fwd = 20
-arg_rot_side = 6
-arg_rot_bck = 14
-arg_robot_speed = 150
-arg_decisions = 10
+arg_stop_dist = 30              # cm robot stops
+arg_rot_fwd = 20                # number of encoder going fwd (roughly 1 per cm)
+arg_rot_side = 6                # number of encoder to make a 90 turn
+arg_rot_bck = 14                # number of encoder to make a 180 turn
+arg_robot_speed = 150           # Speed
+arg_decisions = 10              # Number of times we loop through the program before breaking
 # -- ---------------------------
 
-full_scan = 180
-deg_scan = 170
-start_scan=10
-increm = 10
-tracker=0   
-situation = {}
+#Fixed variables
+# -- ---------------------------
+full_scan = 180                 # Full Degree range with servo
+deg_scan = 170                  # Degree to finish from (due to mounting)
+middle_scan = 90                # Degree looking forward
+start_scan=10                   # Degree to start from (due to mounting)
+increm = 10                     # Degrees to increment via servo
+tracker=0                       # Keeps track of number of times we have looped
+situation = {}                  # keep track of all the distances
+turn_track = 0                  # how many times have we turned & not gone forward
+# -- ---------------------------
 
 def servo_int():
     #Run Through Scan
@@ -32,26 +37,77 @@ def servo_int():
         time.sleep(.01)
         dist=us_dist(15)			#Find the distance of the object in front
         situation[servo_pos] = dist
-        
-def decision():
-    #Step 1 - Lets see if we can go straight
-    middle = full_scan/2 
+
+def full_straight():
+    side1 = []
+    side2 = []
+    # Lets see if forward is the right direction to go
+    mDist = situation[middle_scan]
     
-    #Should we go straight?
-    if situation[middle] > arg_stop_dist:
-        #move forward
+    if mDist > arg_stop_dist:
+        good1 = True
+    else:
+        good1 = False
+    
+    # Lets sniff +/- 30' of 90 to see if anything is in our way
+    for ang in range(80, 50, -10):
+        side1.append(situation[ang])
+        
+    if min(side1) < arg_stop_dist:
+        good2 = False
+    else:
+        good2 = True
+    
+    for ang in range(100, 130, 10):
+        side2.append(situation[ang])
+    
+    if min(side2) < arg_stop_dist:
+        good3 = False
+    else:
+        good3 = True
+    
+    if (good1 and good2 and good3):
+        return True
+    else:
+        return False
+
+def full_turn(side):
+    side1 = []
+    # Test to see if a side angle is the right way to go 
+    if (side=="left"):
+        for ang in range(10, 40, 10):
+            side1.append(situation[ang])
+    elif (side=="right"):
+        for ang in range(170,130, -10):
+            side1.append(situation[ang])
+     
+    if ( min(side1) > arg_stop_dist):
+        return True
+    else:
+        return False
+     
+           
+def decision():
+    
+    # Step 1 - Should we go straight?
+    if full_straight(): #move forward?
         print("moving forward " + str(situation[middle]) + "cm")
+        turn_track = 0
         move_forward()
-    elif situation[deg_scan-increm] > arg_stop_dist:
-        #move left?
+    # Step 2 - Try Left?
+    elif full_turn("left"): #move left?
         print("moving left " + str(situation[deg_scan-increm]) + "cm")
+        turn_track +=1
         turn_left()
-    elif situation[start_scan] > arg_stop_dist:
-        #move right?
+    # Step 3 - Try Right?
+    elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_scan])+"cm")
+        turn_track +=1
         turn_right()
+    # Step 4 - Turn Around
     else:
         print("turning around")
+        turn_track +=1
         turn_around()
 
 def move_forward():
@@ -113,4 +169,8 @@ while True:
     if tracker > arg_decisions:
         break
 
+    if turn_track > 3:
+        print "Robot is stuck - too many turns"
+        break
+    
 disable_servo()

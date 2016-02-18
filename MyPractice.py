@@ -19,21 +19,21 @@ if stuck > 3:
 if situation[90] > stop_dist:
     
     # Lets sniff +/- 30' of 90 to see if anything is in our way
-    side1.append(situation[90-10])
-    side1.append(situation[90-20])
-    side1.append(situation[90-30])
-    good1 = True
-    for a_angle in side1:
-        if a_angle < stop_dist:
-            good1 = False
+    for ang in range(80, 50, -10):
+        side1.append(situation[ang])
     
-    side2.append(situation[90+10])
-    side2.append(situation[90+20])
-    side2.append(situation[90+30])
-    good2 = True
-    for a_angle in side2:
-        if a_angle < stop_dist:
-            good2 = False
+    if min(side1) < stop_dist:
+        good1 = False
+    else:
+        good1 = True
+    
+    for ang in range(100, 130, 10):
+        side2.append(situation[ang])
+    
+    if min(side2) < stop_dist:
+        good2 = False
+    else:
+        good2 = True
     
     if good1 == True and good2 == True:        
         goDist = situation[90] - stop_dist
