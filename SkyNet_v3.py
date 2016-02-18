@@ -32,7 +32,7 @@ turn_track = 0                  # how many times have we turned & not gone forwa
 
 def servo_int():
     #Run Through Scan
-    for servo_pos in xrange(start_scan,deg_scan,increm):
+    for servo_pos in xrange(start_scan,deg_scan+10,increm):
         servo(servo_pos)
         time.sleep(.01)
         dist=us_dist(15)			#Find the distance of the object in front
