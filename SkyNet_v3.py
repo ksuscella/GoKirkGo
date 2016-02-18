@@ -21,9 +21,9 @@ arg_decisions = 10              # Number of times we loop through the program be
 #Fixed variables
 # -- ---------------------------
 full_scan = 180                 # Full Degree range with servo
-deg_scan = 170                  # Degree to finish from (due to mounting)
+deg_scan = 160                  # Degree to finish from (due to mounting)
 middle_scan = 90                # Degree looking forward
-start_scan=10                   # Degree to start from (due to mounting)
+start_scan=20                   # Degree to start from (due to mounting)
 increm = 10                     # Degrees to increment via servo
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
@@ -75,10 +75,10 @@ def full_turn(side):
     side1 = []
     # Test to see if a side angle is the right way to go 
     if (side=="left"):
-        for ang in range(10, 40, 10):
+        for ang in range(20, 50, 10):
             side1.append(situation[ang])
     elif (side=="right"):
-        for ang in range(170,130, -10):
+        for ang in range(160,130, -10):
             side1.append(situation[ang])
      
     if ( min(side1) > arg_stop_dist):
@@ -91,7 +91,7 @@ def decision():
     
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
-        print("moving forward " + str(situation[middle]) + "cm")
+        print("moving forward " + str(situation[middle_scan]) + "cm")
         turn_track = 0
         move_forward()
     # Step 2 - Try Left?
