@@ -68,6 +68,7 @@ def full_straight():
     else:
         good3 = True
     
+    print (str(min(side1)) + " " + str(min(side2)) + str(mDist))
     if (good1 and good2 and good3):
         return True
     else:
@@ -83,6 +84,7 @@ def full_turn(side):
         for ang in range(160,130, -10):
             side1.append(situation[ang])
      
+    print(side + " " + str(min(side1))) 
     if ( min(side1) > arg_stop_dist):
         return True
     else:
@@ -114,7 +116,11 @@ def decision():
 
 def move_forward():
     #GoPiGo moves forward a short distance
-    enc_tgt(1,1,arg_rot_fwd)
+    fwd_rot = situation[middle_scan] - arg_stop_dist 
+    if (fwd_rot < arg_rot_fwd):
+        enc_tgt(1,1,fwd_rot)
+    else:
+        enc_tgt(1,1,arg_rot_fwd)
     fwd()
     
 def turn_around():
