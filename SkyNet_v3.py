@@ -50,11 +50,11 @@ def full_straight():
         good1 = True
     else:
         good1 = False
-    
+    print("-- sniff test")
     # Lets sniff +/- 30' of 90 to see if anything is in our way
     for ang in range(80, 50, -10):
         side1.append(situation[ang])
-        
+    print(ang)  
     if min(side1) < arg_stop_dist:
         good2 = False
     else:
@@ -62,13 +62,12 @@ def full_straight():
     
     for ang in range(100, 130, 10):
         side2.append(situation[ang])
-    
+    print(ang)
     if min(side2) < arg_stop_dist:
         good3 = False
     else:
         good3 = True
     
-    print (str(min(side1)) + " " + str(min(side2)) + str(mDist))
     if (good1 and good2 and good3):
         return True
     else:
