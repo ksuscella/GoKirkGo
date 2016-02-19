@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #############################################################################################################                                                                  
 
-for servo_pos in xrange(0,180,10):
+middle_scan = 80
+
+for servo_pos in xrange(0,40,10):
     print(servo_pos)

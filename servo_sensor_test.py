@@ -55,8 +55,8 @@ while True:
 	#Get the servo angles back to the normal 0 to 180 degree range
 	if servo_pos>170:
 		servo_pos=170
-	if servo_pos<-30:
-		servo_pos=-30
+	if servo_pos<0:
+		servo_pos=0
 		
 	servo(servo_pos)		# This function updates the servo with the latest positon.  Move the servo.
 	print(str(servo_pos) + "angle with distance " + str(us_dist(15)))
