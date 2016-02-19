@@ -21,9 +21,9 @@ arg_decisions = 10              # Number of times we loop through the program be
 #Fixed variables
 # -- ---------------------------
 full_scan = 180                 # Full Degree range with servo
-deg_scan = 160                  # Degree to finish from (due to mounting)
-middle_scan = 90                # Degree looking forward
-start_scan=20                   # Degree to start from (due to mounting)
+deg_scan = 170                  # Degree to finish from (due to mounting)
+middle_scan = 70                # Degree looking forward (90 is not straight - using 70)
+start_scan=0                    # Degree to start from (due to mounting)
 increm = 10                     # Degrees to increment via servo
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
