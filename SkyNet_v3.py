@@ -46,7 +46,7 @@ def full_straight():
     for ang in range(middle_scan-30, middle_scan+40, 10):
         fwd_scan.append(situation[ang])
     
-    if (min(fwd_scan) < arg_stop_dist):
+    if (min(fwd_scan) > arg_stop_dist):
         return True
     else:
         return False
