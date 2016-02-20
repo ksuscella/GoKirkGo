@@ -67,28 +67,23 @@ def full_turn(side):
     else:
         return False
      
-           
 def decision():
     
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
-        
         move_forward()
     # Step 2 - Try Left?
     elif full_turn("left"): #move left?
         print("moving left " + str(situation[deg_scan-increm]) + "cm")
-        
         turn_left()
     # Step 3 - Try Right?
     elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_scan])+"cm")
-        
         turn_right()
     # Step 4 - Turn Around
     else:
         print("turning around")
-        
         turn_around()
 
 def move_forward():
@@ -102,14 +97,8 @@ def move_forward():
     
 def turn_around():
     #Turn Around
-    
-    #Pick which way to turn
-    if situation[deg_scan-increm] > situation[start_scan]:
-        enc_tgt(1,1,arg_rot_bck)
-        left_rot()
-    else:
-        enc_tgt(1,1,arg_rot_bck)
-        right_rot()
+    enc_tgt(1,1,arg_rot_bck)
+    left_rot()
     
 def turn_left():
     #Turn Left
@@ -139,7 +128,6 @@ if len(args) == 6:  #Use defaults if arguments don't match
     arg_robot_speed = int(args[4])
     arg_decisions = int(args[5])
 
-
 print "Press ENTER to begin"
 raw_input()				#Wait for input to start
 set_speed(arg_robot_speed)
@@ -152,10 +140,6 @@ while True:
     stop()
     tracker = tracker + 1
     if tracker > arg_decisions:
-        break
-
-    if turn_track > 3:
-        print "Robot is stuck - too many turns"
         break
     
 disable_servo()
