@@ -46,9 +46,9 @@ while True:
 	inp=raw_input()				# Get keyboard input.
 	# Now decide what to do with that keyboard input.  
 	if inp=='a':
-		servo_pos=servo_pos+10	# If input is 'a' move the servo forward 10 degrees.
+		servo_pos=servo_pos+5	# If input is 'a' move the servo forward 10 degrees.
 	elif inp=='d':
-		servo_pos=servo_pos-10	# If the input is 'd' move the servo backward by 10 degrees.
+		servo_pos=servo_pos-5	# If the input is 'd' move the servo backward by 10 degrees.
 	elif inp=='s':
 		servo_pos=90			
 		
