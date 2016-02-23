@@ -107,6 +107,8 @@ def us_map():
 			grid[y[i]][x[i]]=1	
 	fence='-'*(grid_size+1)
 	
+	print(grid)
+	
 	#Print the map
 	print "Map:"
 	print fence*2
