@@ -25,13 +25,16 @@ enable_servo()
 for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
 	dist_l = []
 	servo(a_ang)
+	avg_sum = 0
 	time.sleep(.25) # Give it time to get into position
 	for a_sample in xrange(1,sample+1,1):
+		avg_sum = avg_sum + us_dist(15)
 		dist_l.append(us_dist(15))
 		time.sleep(.01)
 	
 	#Find the sample that is most common among all the samples for a particular angle
-	dist=Counter(dist_l).most_common()	
+	#dist=Counter(dist_l).most_common()	
+	dist = avg_sum/sample
 	
 	print("\""+str(a_ang)+"\":" + str(dist) + ",")
 	
