@@ -4,6 +4,8 @@
 ########################################################################
 from gopigo import *
 
+import collections
+
 print "Press ENTER to start scan"
 raw_input()				#Wait for input to start
 
