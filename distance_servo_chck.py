@@ -4,7 +4,7 @@
 ########################################################################
 from gopigo import *
 
-import collections
+from collections import Counter
 
 print "Press ENTER to start scan"
 raw_input()				#Wait for input to start
