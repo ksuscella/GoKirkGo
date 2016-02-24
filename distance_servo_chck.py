@@ -19,6 +19,8 @@ lim = 250					# max distance value
 myX = []
 myY = []
 
+enable_servo()
+
 #Loop over angles and capture results
 for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
 	dist_l = []
@@ -30,9 +32,7 @@ for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
 	
 	#Find the sample that is most common among all the samples for a particular angle
 	dist=Counter(dist_l).most_common()	
-	if dist > lim:	#max distance at 250cm
-		dist = lim
 	
 	print("\""+str(a_ang)+"\":" + str(dist) + ",")
 	
-	
+disable_servo()
