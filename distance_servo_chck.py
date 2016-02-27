@@ -47,7 +47,7 @@ for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
 	dist = avg_sum/sample
 	
 	print("\""+str(a_ang)+"\":" + str(dist) + ",")
-	json_scans = json_string + "\""+str(a_ang)+"\":" + str(dist) + ","
+	json_scans = json_scans + "\""+str(a_ang)+"\":" + str(dist) + ","
 disable_servo()
 
 trim_length = len(json_scans)-1	#trim comma out
