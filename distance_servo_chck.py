@@ -64,7 +64,7 @@ json_string = ('{' +
 my_mac = '192.168.1.105:8889'
 url = 'http://' + my_mac + '/'
 
-url = url + '?greeting='+json_string
+url = url + '?get_json='+json_string
 
 req = urllib2.Request(url)
 f = urllib2.urlopen(req)
