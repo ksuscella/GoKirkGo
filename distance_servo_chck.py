@@ -46,7 +46,7 @@ disable_servo()
 trim_length = len(json_string)-1	#trim comma out
 json_string = json_string[:trim_length] + "}"
 #Send findings to laptop
-my_mac = '192.168.1.105'
+my_mac = '192.168.1.105:8889'
 url = 'http://' + my_mac + '/'
 
 url = url + '?greeting='+json_string
