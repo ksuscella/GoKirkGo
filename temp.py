@@ -1,25 +1,22 @@
 #Temp
 
-#Send information to laptop
-import urllib
-import urllib2
+#Write to a file
+
+import os
 import json
+import time
 
-my_mac = '192.168.1.105:8889'
-
-url = 'http://' + my_mac + '/'
-
-
-
-url = url + '?greeting={"23":23}'
-
-req = urllib2.Request(url)
-f = urllib2.urlopen(req)
-response = f.read()
-print(response)
+print(time.strftime("%Y%m%d%H%M%S"))
+run_number = time.strftime("%Y%m%d%H%M%S")      #Static to the Application Run
+os.chdir("/Users/kirk/Documents/GoPiGo/GoKirkGo/")
+f = open('workfile.json', 'a')
+f.write("{")
+f.write('"robot_id":1,')                        #future when there is more than 1 robot
+f.write('"run_number":' + run_number + ',')     #run number for scanning a space
+f.write('"angle": 0,')                          #angle relative to the start position
+f.write('"distance": 0,')                       #distance travelled before current scan
+f.write('"decision_number": 1')
+f.write('}')
 f.close()
 
-howdy = "123456789,"
-trim_a = len(howdy)-1
-howdy = howdy[:trim_a]
-print(howdy)
+

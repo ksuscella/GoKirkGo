@@ -7,22 +7,29 @@ from collections import Counter
 
 import urllib
 import urllib2
+import time
 
 print "Press ENTER to start scan"
 raw_input()				#Wait for input to start
 
-mid_servo_pos=80 			# middle
-start_servo_pos = 0			# start angle
-end_servo_pos= 160 			# end angle - prevent servo damage
-increm = 5 					# degree to increment
-sample = 5 					# Lets capture more than one distance 
-lim = 250					# max distance value
+j_robot_number = 1								#Static robot #
+j_run_number = time.strftime("%Y%m%d%H%M%S")    #Static to the Application Run
+j_angle = 0										#Static for now - angle relative to start
+j_distance = 0									#Static for now - distance travelled
+j_decision = 0									#Static for now - number of times the robot has made a decision on scan
+
+mid_servo_pos=80 								# middle
+start_servo_pos = 0								# start angle
+end_servo_pos= 160 								# end angle - prevent servo damage
+increm = 5 										# degree to increment
+sample = 5 										# Lets capture more than one distance 
+lim = 250										# max distance value
 
 myX = []
 myY = []
 
 enable_servo()
-json_string = "{"
+json_scans = "{"
 
 #Loop over angles and capture results
 for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
@@ -40,11 +47,19 @@ for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
 	dist = avg_sum/sample
 	
 	print("\""+str(a_ang)+"\":" + str(dist) + ",")
-	json_string = json_string + "\""+str(a_ang)+"\":" + str(dist) + ","
+	json_scans = json_string + "\""+str(a_ang)+"\":" + str(dist) + ","
 disable_servo()
 
-trim_length = len(json_string)-1	#trim comma out
-json_string = json_string[:trim_length] + "}"
+trim_length = len(json_scans)-1	#trim comma out
+json_scans = json_scans[:trim_length] + "}"
+
+json_string = ('{' + 
+	'"robot_id":' + j_robot_number + ',' +
+	'"run_number":' + j_run_number + ',' +
+	'"angle":' + j_angle + ',' +
+	'"distance":' + j_distance + ',' +
+	'"decision":' + j_decision + ',' +
+	json_scans + '}')
 #Send findings to laptop
 my_mac = '192.168.1.105:8889'
 url = 'http://' + my_mac + '/'
