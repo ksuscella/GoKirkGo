@@ -12,7 +12,7 @@ print(os.getcwd())
 os.chdir("/Users/kirk/Documents/GoPiGo/GoKirkGo/")
 print(os.getcwd())
 # Open a file
-fo = open("distance.json", "r")
+fo = open("distance2.json", "r")
 print "Name of the file: ", fo.name
 print "Closed or not : ", fo.closed
 print "Opening mode : ", fo.mode
@@ -26,7 +26,7 @@ fo.close()
 myX = []
 myY = []
 
-for ang_l in xrange(0,175,5):
+for ang_l in xrange(0,161,1):
 #for ang_l in xrange(60,105,5):
     dist_l = parsed_json[str(ang_l)]
     myX.append(int(dist_l*math.cos(math.pi*(ang_l)/180)))
