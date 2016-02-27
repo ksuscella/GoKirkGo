@@ -54,11 +54,11 @@ trim_length = len(json_scans)-1	#trim comma out
 json_scans = json_scans[:trim_length] + "}"
 
 json_string = ('{' + 
-	'"robot_id":' + j_robot_number + ',' +
-	'"run_number":' + j_run_number + ',' +
-	'"angle":' + j_angle + ',' +
-	'"distance":' + j_distance + ',' +
-	'"decision":' + j_decision + ',' +
+	'"robot_id":' + str(j_robot_number) + ',' +
+	'"run_number":' + str(j_run_number) + ',' +
+	'"angle":' + str(j_angle) + ',' +
+	'"distance":' + str(j_distance) + ',' +
+	'"decision":' + str(j_decision) + ',' +
 	json_scans + '}')
 #Send findings to laptop
 my_mac = '192.168.1.105:8889'
