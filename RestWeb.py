@@ -3,6 +3,9 @@ import tornado.escape
 import tornado.ioloop
 import tornado.web
 import logging
+
+from pymongo import MongoClient     #Load Results into MongoDB
+
   
 #Website
 #http://www.drdobbs.com/open-source/building-restful-apis-with-tornado/240160382?pgno=1
@@ -13,11 +16,15 @@ import logging
 from tornado.log import enable_pretty_logging
 enable_pretty_logging() 
 
+client = MongoClient()
+db = client.kirk
+
 class RESTHandler(tornado.web.RequestHandler):
     def get(self):
         json_request = self.get_argument('get_json')
         logging.info("RESTHandler Request")
         logging.info(json_request)
+        result = db.robot.insert_one(json_request)
         self.write('{"return":"good"}')
 application = tornado.web.Application([
     (r"/", RESTHandler)
