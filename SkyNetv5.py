@@ -19,7 +19,7 @@ arg_rot_fwd = 20                # number of encoder going fwd (roughly 1 per cm)
 arg_rot_side = 6                # number of encoder to make a 90 turn
 arg_rot_bck = 14                # number of encoder to make a 180 turn
 arg_robot_speed = 150           # Speed
-arg_decisions = 10              # Number of times we loop through the program before breaking
+arg_decisions = 5              # Number of times we loop through the program before breaking
 # -- ---------------------------
 
 #Fixed variables
@@ -60,7 +60,38 @@ def servo_int():
         enable_servo()
         dist = avg_sum/sample   # Want to do a chk & throw out bogus numbers
         situation[a_ang] = dist
+
+def send_info():
+    #Send results to laptop
+    j_decision = tracker
     
+    # Collect up all distances & angles
+    json_scans = '{'
+    for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
+        json_scans = json_scans + "\""+str(a_ang)+"\":" + str(dist) + ","
+    
+    trim_length = len(json_scans)-1	#trim comma out
+    json_scans = json_scans[:trim_length] + "}"
+        
+    #Setup Full Json    
+    json_string = ('{' + 
+	'"robot_id":' + str(j_robot_number) + ',' +
+	'"run_number":' + str(j_run_number) + ',' +
+	'"angle":' + str(j_angle) + ',' +
+	'"distance":' + str(j_distance) + ',' +
+	'"decision":' + str(j_decision) + ',' +
+	'"distance_list":' + json_scans + '}')
+    
+    #Send findings to laptop
+    url = 'http://' + my_mac + '/'
+    url = url + '?get_json='+json_string
+
+    req = urllib2.Request(url)
+    f = urllib2.urlopen(req)
+    response = f.read()
+    print(response)
+    f.close()
+
 def full_straight():
     # Scan forward direction
     fwd_scan = []
@@ -174,33 +205,3 @@ while True:
     
 disable_servo()
 
-def send_info():
-    #Send results to laptop
-    j_decision = tracker
-    
-    # Collect up all distances & angles
-    json_scans = '{'
-    for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
-        json_scans = json_scans + "\""+str(a_ang)+"\":" + str(dist) + ","
-    
-    trim_length = len(json_scans)-1	#trim comma out
-    json_scans = json_scans[:trim_length] + "}"
-        
-    #Setup Full Json    
-    json_string = ('{' + 
-	'"robot_id":' + str(j_robot_number) + ',' +
-	'"run_number":' + str(j_run_number) + ',' +
-	'"angle":' + str(j_angle) + ',' +
-	'"distance":' + str(j_distance) + ',' +
-	'"decision":' + str(j_decision) + ',' +
-	'"distance_list":' + json_scans + '}')
-    
-    #Send findings to laptop
-    url = 'http://' + my_mac + '/'
-    url = url + '?get_json='+json_string
-
-    req = urllib2.Request(url)
-    f = urllib2.urlopen(req)
-    response = f.read()
-    print(response)
-    f.close()
