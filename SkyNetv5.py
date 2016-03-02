@@ -57,7 +57,7 @@ def servo_int():
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
-            time.sleep(.01)
+            #time.sleep(.01)
         #enable_servo()
         dist = avg_sum/sample   # Want to do a chk & throw out bogus numbers
         situation[a_ang] = dist
