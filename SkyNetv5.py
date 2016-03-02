@@ -42,7 +42,7 @@ j_run_number = time.strftime("%Y%m%d%H%M%S")    #Static to the Application Run
 j_angle = 0										#Static for now - angle relative to start
 j_distance = 0									#Static for now - distance travelled
 j_decision = 0									#Static for now - number of times the robot has made a decision on scan
-my_mac = '192.168.1.105:8889'
+my_mac = '192.168.1.106:8889'
 # -- ---------------------------
 
 def servo_int():
