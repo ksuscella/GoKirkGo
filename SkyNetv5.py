@@ -29,7 +29,7 @@ end_servo_pos = 160                  # Degree to finish from (due to mounting)
 middle_scan = 80                # Degree looking forward (90 is not straight - using 70)
 start_servo_pos=0                    # Degree to start from (due to mounting)
 increm = 5                      # Degrees to increment via servo
-sample = 5                      # Capture more than one distance
+sample = 2                      # Capture more than one distance
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
 turn_track = 0                  # how many times have we turned & not gone forward
@@ -53,7 +53,7 @@ def servo_int():
         servo(a_ang)
         avg_sum = 0
         #disable_servo()     # Noticed shaking....try to stabilize
-        time.sleep(.5)      # Give it time to get into position
+        time.sleep(.2)      # Give it time to get into position
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
