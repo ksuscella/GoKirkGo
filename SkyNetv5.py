@@ -49,6 +49,7 @@ def servo_int():
     #Run through scan angles and capture results
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
         dist_l = []
+        print(a_ang)
         servo(a_ang)
         avg_sum = 0
         disable_servo()     # Noticed shaking....try to stabilize
@@ -68,7 +69,7 @@ def send_info():
     # Collect up all distances & angles
     json_scans = '{'
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
-        json_scans = json_scans + "\""+str(a_ang)+"\":" + str(dist) + ","
+        json_scans = json_scans + "\""+str(a_ang)+"\":" + str(situation[a_ang]) + ","
     
     trim_length = len(json_scans)-1	#trim comma out
     json_scans = json_scans[:trim_length] + "}"
