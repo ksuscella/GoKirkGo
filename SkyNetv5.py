@@ -49,16 +49,16 @@ def servo_int():
     #Run through scan angles and capture results
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
         dist_l = []
-        print(a_ang)
+        #print(a_ang)
         servo(a_ang)
         avg_sum = 0
-        disable_servo()     # Noticed shaking....try to stabilize
+        #disable_servo()     # Noticed shaking....try to stabilize
         time.sleep(.5)      # Give it time to get into position
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
             time.sleep(.01)
-        enable_servo()
+        #enable_servo()
         dist = avg_sum/sample   # Want to do a chk & throw out bogus numbers
         situation[a_ang] = dist
 
@@ -86,7 +86,8 @@ def send_info():
     #Send findings to laptop
     url = 'http://' + my_mac + '/'
     url = url + '?get_json='+json_string
-
+    
+    print(url)
     req = urllib2.Request(url)
     f = urllib2.urlopen(req)
     response = f.read()
