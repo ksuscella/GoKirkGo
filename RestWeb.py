@@ -4,6 +4,8 @@ import tornado.ioloop
 import tornado.web
 import logging
 
+import json
+
 from pymongo import MongoClient     #Load Results into MongoDB
 
   
@@ -24,7 +26,7 @@ class RESTHandler(tornado.web.RequestHandler):
         json_request = self.get_argument('get_json')
         logging.info("RESTHandler Request")
         logging.info(json_request)
-        result = db.robot.insert_one(json_request)
+        result = db.robot.insert_one(json.loads(json_request))
         self.write('{"return":"good"}')
 application = tornado.web.Application([
     (r"/", RESTHandler)

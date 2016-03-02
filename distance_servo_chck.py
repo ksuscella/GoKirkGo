@@ -59,7 +59,7 @@ json_string = ('{' +
 	'"angle":' + str(j_angle) + ',' +
 	'"distance":' + str(j_distance) + ',' +
 	'"decision":' + str(j_decision) + ',' +
-	json_scans + '}')
+	'"distance_list":' + json_scans + '}')
 #Send findings to laptop
 my_mac = '192.168.1.105:8889'
 url = 'http://' + my_mac + '/'
