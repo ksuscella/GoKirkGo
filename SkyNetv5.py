@@ -121,7 +121,7 @@ def full_turn(side):
         return False
      
 def decision():
-    
+    j_angle="hello?"
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
@@ -142,7 +142,7 @@ def decision():
         print("turning around")
         j_angle = "turn around"
         turn_around()
-
+    print("****** " + j_angle)
 def move_forward():
     #GoPiGo moves forward a short distance
     fwd_rot = situation[middle_scan] - arg_stop_dist 
