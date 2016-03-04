@@ -33,15 +33,13 @@ sample = 2                      # Capture more than one distance
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
 turn_track = 0                  # how many times have we turned & not gone forward
-my_angle = 0
-my_distance = 0
 # -- ---------------------------
 
 # URL variables
 # -- ---------------------------
 j_robot_number = 1								#Static robot #
 j_run_number = time.strftime("%Y%m%d%H%M%S")    #Static to the Application Run
-j_angle = 0										#Static for now - angle relative to start
+j_angle = "start"								#Static for now - angle relative to start
 j_distance = 0									#Static for now - distance travelled
 j_decision = 0									#Static for now - number of times the robot has made a decision on scan
 my_mac = '192.168.1.106:8889'
@@ -64,9 +62,6 @@ def servo_int():
 def send_info():
     #Send results to laptop
     j_decision = tracker
-    j_angle = my_angle
-    
-    print("**" + str(j_angle))
     
     # Collect up all distances & angles
     json_scans = '{'
@@ -80,7 +75,7 @@ def send_info():
     json_string = ('{' + 
 	'"robot_id":' + str(j_robot_number) + ',' +
 	'"run_number":' + str(j_run_number) + ',' +
-	'"angle":' + str(j_angle) + ',' +
+	'"angle":' + j_angle + ',' +
 	'"distance":' + str(j_distance) + ',' +
 	'"decision":' + str(j_decision) + ',' +
 	'"distance_list":' + json_scans + '}')
@@ -130,26 +125,22 @@ def decision():
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
-        my_angle=0
-        print(my_angle)
+        j_angle = "forward"
         move_forward()
     # Step 2 - Try Left?
     elif full_turn("left"): #move left?
         print("moving left " + str(situation[end_servo_pos-increm]) + "cm")
-        my_angle=-90
-        print(my_angle)
+        j_angle = "left"
         turn_left()
     # Step 3 - Try Right?
     elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_servo_pos])+"cm")
-        my_angle=90
-        print(my_angle)
+        j_angle = "right"
         turn_right()
     # Step 4 - Turn Around
     else:
         print("turning around")
-        my_angle=180
-        print(my_angle)
+        j_angle = "turn around"
         turn_around()
 
 def move_forward():
