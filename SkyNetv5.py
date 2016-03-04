@@ -129,21 +129,25 @@ def decision():
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
         j_angle=0
+        print(j_angle)
         move_forward()
     # Step 2 - Try Left?
     elif full_turn("left"): #move left?
         print("moving left " + str(situation[end_servo_pos-increm]) + "cm")
         j_angle=-90
+        print(j_angle)
         turn_left()
     # Step 3 - Try Right?
     elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_servo_pos])+"cm")
         j_angle=90
+        print(j_angle)
         turn_right()
     # Step 4 - Turn Around
     else:
         print("turning around")
         j_angle=180
+        print(j_angle)
         turn_around()
 
 def move_forward():
@@ -155,6 +159,7 @@ def move_forward():
     else:
         j_distance = arg_rot_fwd
         enc_tgt(1,1,arg_rot_fwd)
+    print(j_distance)
     fwd()
     
 def turn_around():
