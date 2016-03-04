@@ -16,8 +16,8 @@ import time                     # Create unique run id
 # -- --------------------------
 arg_stop_dist = 30              # cm robot stops
 arg_rot_fwd = 20                # number of encoder going fwd (roughly 1 per cm)
-arg_rot_side = 6                # number of encoder to make a 90 turn
-arg_rot_bck = 14                # number of encoder to make a 180 turn
+arg_rot_side = 8                # number of encoder to make a 90 turn
+arg_rot_bck = 16                # number of encoder to make a 180 turn
 arg_robot_speed = 150           # Speed
 arg_decisions = 5              # Number of times we loop through the program before breaking
 # -- ---------------------------
@@ -28,11 +28,13 @@ full_scan = 180                 # Full Degree range with servo
 end_servo_pos = 160                  # Degree to finish from (due to mounting)
 middle_scan = 80                # Degree looking forward (90 is not straight - using 70)
 start_servo_pos=0                    # Degree to start from (due to mounting)
-increm = 10                     # Degrees to increment via servo
+increm = 20                     # Degrees to increment via servo
 sample = 2                      # Capture more than one distance
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
 turn_track = 0                  # how many times have we turned & not gone forward
+my_angle = 0
+my_distance = 0
 # -- ---------------------------
 
 # URL variables
@@ -65,6 +67,7 @@ def servo_int():
 def send_info():
     #Send results to laptop
     j_decision = tracker
+    j_angle = my_angle
     
     # Collect up all distances & angles
     json_scans = '{'
@@ -128,26 +131,26 @@ def decision():
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
-        j_angle=0
-        print(j_angle)
+        my_angle=0
+        print(my_angle)
         move_forward()
     # Step 2 - Try Left?
     elif full_turn("left"): #move left?
         print("moving left " + str(situation[end_servo_pos-increm]) + "cm")
-        j_angle=-90
-        print(j_angle)
+        my_angle=-90
+        print(my_angle)
         turn_left()
     # Step 3 - Try Right?
     elif full_turn("right"): #move right?
         print("moving right " + str(situation[start_servo_pos])+"cm")
-        j_angle=90
-        print(j_angle)
+        my_angle=90
+        print(my_angle)
         turn_right()
     # Step 4 - Turn Around
     else:
         print("turning around")
-        j_angle=180
-        print(j_angle)
+        my_angle=180
+        print(my_angle)
         turn_around()
 
 def move_forward():
@@ -204,6 +207,7 @@ while True:
     servo_int()
     send_info()
     decision()
+    time.sleep(1) 
     tracker = tracker + 1
     if tracker > arg_decisions:
         break
