@@ -62,7 +62,7 @@ def servo_int():
 def send_info():
     #Send results to laptop
     j_decision = tracker
-    
+    print("^^^^ " + j_angle)
     # Collect up all distances & angles
     json_scans = '{'
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
@@ -143,6 +143,7 @@ def decision():
         j_angle = "turn around"
         turn_around()
     print("****** " + j_angle)
+    
 def move_forward():
     #GoPiGo moves forward a short distance
     fwd_rot = situation[middle_scan] - arg_stop_dist 
@@ -196,6 +197,7 @@ enable_servo()
 while True:
     servo_int()
     decision()
+    print("&&& " + j_angle)
     send_info()
     time.sleep(1) 
     tracker = tracker + 1
