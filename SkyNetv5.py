@@ -195,8 +195,8 @@ enable_servo()
 
 while True:
     servo_int()
-    send_info()
     decision()
+    send_info()
     time.sleep(1) 
     tracker = tracker + 1
     if tracker > arg_decisions:
