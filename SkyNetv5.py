@@ -51,7 +51,6 @@ def servo_int():
     #Run through scan angles and capture results
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
         dist_l = []
-        #print(a_ang)
         servo(a_ang)
         avg_sum = 0
         #disable_servo()     # Noticed shaking....try to stabilize
@@ -59,8 +58,6 @@ def servo_int():
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
-            #time.sleep(.01)
-        #enable_servo()
         dist = avg_sum/sample   # Want to do a chk & throw out bogus numbers
         situation[a_ang] = dist
 
@@ -68,6 +65,8 @@ def send_info():
     #Send results to laptop
     j_decision = tracker
     j_angle = my_angle
+    
+    print("**" + j_angle)
     
     # Collect up all distances & angles
     json_scans = '{'
