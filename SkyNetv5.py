@@ -62,7 +62,6 @@ def servo_int():
 def send_info():
     #Send results to laptop
     j_decision = tracker
-    print("^^^^ " + j_angle)
     # Collect up all distances & angles
     json_scans = '{'
     for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
@@ -121,7 +120,7 @@ def full_turn(side):
         return False
      
 def decision():
-    j_angle="hello?"
+    global j_angle 
     # Step 1 - Should we go straight?
     if full_straight(): #move forward?
         print("moving forward " + str(situation[middle_scan]) + "cm")
@@ -142,9 +141,10 @@ def decision():
         print("turning around")
         j_angle = "turn around"
         turn_around()
-    print("****** " + j_angle)
+
     
 def move_forward():
+    global j_distance 
     #GoPiGo moves forward a short distance
     fwd_rot = situation[middle_scan] - arg_stop_dist 
     if (fwd_rot < arg_rot_fwd):
@@ -197,7 +197,6 @@ enable_servo()
 while True:
     servo_int()
     decision()
-    print("&&& " + j_angle)
     send_info()
     time.sleep(1) 
     tracker = tracker + 1
