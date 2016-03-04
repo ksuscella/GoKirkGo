@@ -75,7 +75,7 @@ def send_info():
     json_string = ('{' + 
 	'"robot_id":' + str(j_robot_number) + ',' +
 	'"run_number":' + str(j_run_number) + ',' +
-	'"angle":' + j_angle + ',' +
+	'"angle":' + '\"' + j_angle + '\"' + ',' +
 	'"distance":' + str(j_distance) + ',' +
 	'"decision":' + str(j_decision) + ',' +
 	'"distance_list":' + json_scans + '}')
