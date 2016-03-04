@@ -66,7 +66,7 @@ def send_info():
     j_decision = tracker
     j_angle = my_angle
     
-    print("**" + j_angle)
+    print("**" + str(j_angle))
     
     # Collect up all distances & angles
     json_scans = '{'
