@@ -28,7 +28,7 @@ full_scan = 180                 # Full Degree range with servo
 end_servo_pos = 160                  # Degree to finish from (due to mounting)
 middle_scan = 80                # Degree looking forward (90 is not straight - using 70)
 start_servo_pos=0                    # Degree to start from (due to mounting)
-increm = 10                     # Degrees to increment via servo
+increm = 5                     # Degrees to increment via servo
 sample = 2                      # Capture more than one distance
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
@@ -158,16 +158,22 @@ def move_forward():
     
 def turn_around():
     #Turn Around
+    global j_distance
+    j_distance = 0
     enc_tgt(1,1,arg_rot_bck)
     left_rot()
     
 def turn_left():
     #Turn Left
+    global j_distance
+    j_distance = 0
     enc_tgt(1,1,arg_rot_side)
     left_rot()
     
 def turn_right():
     #Turn Right
+    global j_distance
+    j_distance = 0
     enc_tgt(1,1,arg_rot_side)
     right_rot()
 

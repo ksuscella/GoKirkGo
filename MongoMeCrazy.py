@@ -1,15 +1,60 @@
 #MongoDB Me Crazy - Practice Python File
 
 from pymongo import MongoClient
+import pymongo
 import json
+import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 client = MongoClient()
 db = client.kirk
 
-json_test = '{"robot_id":1,"run_number":20160228011453,"angle":0,"distance":0,"decision":0,"cord_list" :{"0":47,"5":56,"10":52,"15":56,"20":59,"25":19,"30":18,"35":17,"40":17,"45":15,"50":15,"55":15,"60":14,"65":15,"70":14,"75":15,"80":15,"85":14,"90":15,"95":16,"100":16,"105":16,"110":17,"115":687,"120":687,"125":687,"130":687,"135":688,"140":688,"145":688,"150":688,"155":688,"160":688}}'
+#Last run 20160304035759
+cursor = db.robot.find(
+        {"run_number": 20160304035759}
+        ).sort([
+        ("decision", pymongo.ASCENDING)])
 
-result = db.test.insert_one(
-    json.loads(json_test)
-)
+graphX = []
+graphY = []
 
-print result.inserted_id
+x_adjustment=0
+y_adjustment=0
+    
+for document in cursor:
+    #Set some temporary variables to pull data
+    m_distance = document['distance']
+    m_run_number = document['run_number']
+    m_angle = document['angle']
+    m_robot= document['robot_id']
+    m_distance_list = document['distance_list']
+    m_decision = document['decision']
+    
+    #Pull Angles & Distances
+    for a_ang, a_dist in m_distance_list.iteritems():
+        
+        #Calculate XYs
+        myX = (float(a_dist)*math.cos(math.pi*(float(a_ang))/180))
+        myY = (float(a_dist)*math.sin(math.pi*(float(a_ang))/180))
+        
+        if (m_angle=='start'):
+                graphX.append(myX)
+                graphY.append(myY)
+        if (m_angle=='forward'):
+                y_adjustment = y_adjustment - m_distance
+                graphX.append(myX)
+                graphY.append(myY+y_adjustment)
+        if (m_angle=='left'):
+                graphX.append(myY*-1)
+                graphY.append(myX)
+        if (m_angle=='right'):
+                graphX.append(myY)
+                graphY.append(myX*-1)
+        
+    print(" " + str(m_angle))          
+    print(" " + str(m_distance))
+    
+    
+plt.plot(graphX,graphY,'x')
+plt.show()
