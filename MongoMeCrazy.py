@@ -12,12 +12,14 @@ db = client.kirk
 
 #Last run 20160304035759
 cursor = db.robot.find(
-        {"run_number": 20160304035759}
+        {"run_number": 20160313030230}
         ).sort([
         ("decision", pymongo.ASCENDING)])
 
 graphX = []
 graphY = []
+
+calc_angle = 0
 
 x_adjustment=0
 y_adjustment=0
@@ -30,6 +32,13 @@ for document in cursor:
     m_robot= document['robot_id']
     m_distance_list = document['distance_list']
     m_decision = document['decision']
+    
+    #Lets figure out angle/distance for coordinates
+    #Determine Angle
+    
+    rotation = round(abs(calc_angle/360),2)
+        print("rotation: " + str(rotation))
+    
     
     #Pull Angles & Distances
     for a_ang, a_dist in m_distance_list.iteritems():
@@ -46,11 +55,24 @@ for document in cursor:
                 graphX.append(myX)
                 graphY.append(myY+y_adjustment)
         if (m_angle=='left'):
-                graphX.append(myY*-1)
-                graphY.append(myX)
+                calc_angle = calc_angle - 90
         if (m_angle=='right'):
-                graphX.append(myY)
-                graphY.append(myX*-1)
+                calc_angle = calc_angle + 90
+        if(m_angle=='turn around'):
+                calc_angle = calc_angle + 180
+             
+        
+        #270     
+        #graphX.append(myY*-1)
+        #graphY.append(myX)  
+         
+        #90    
+        #graphX.append(myY)
+        #graphY.append(myX*-1)
+        
+        #180
+        #graphX.append(myX*-1)
+        #grapyY.append(myY*-1)
         
     print(" " + str(m_angle))          
     print(" " + str(m_distance))
