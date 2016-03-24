@@ -15,7 +15,7 @@ graphX = []
 graphY = []
 x_adjustment=0
 y_adjustment=0
-run_number = 20160324010911
+run_number = 20160324011612
 robot_x = 0
 robot_y = 0
 client = MongoClient()
@@ -72,8 +72,8 @@ for document in cursor:
      for a_ang, a_dist in m_distance_list.iteritems():
         
         #Calculate XYs
-        myX = (float(a_dist)*math.cos(math.pi*(float(a_ang))/180))
-        myY = (float(a_dist)*math.sin(math.pi*(float(a_ang))/180))
+        myX = (float(a_dist)*math.cos((float(a_ang)*math.pi/180)))
+        myY = (float(a_dist)*math.sin((float(a_ang)*math.pi/180)))
         
         graphX.append(myX)
         graphY.append(myY)
