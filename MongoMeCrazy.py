@@ -15,7 +15,7 @@ graphX = []
 graphY = []
 x_adjustment=0
 y_adjustment=0
-run_number = 20160315011715
+run_number = 20160324010911
 robot_x = 0
 robot_y = 0
 client = MongoClient()
@@ -79,10 +79,10 @@ for document in cursor:
         graphY.append(myY)
         
         
-     plt.plot(graphX,graphY,'x')
-     plt.show()
-     graphX = []
-     graphY = []
+plt.plot(graphX,graphY,'x')
+plt.show()
+     #graphX = []
+     #graphY = []
 
 
 #if deg== 0:
