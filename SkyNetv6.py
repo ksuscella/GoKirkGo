@@ -54,7 +54,7 @@ def servo_int():
         servo(a_ang)
         avg_sum = 0
         #disable_servo()     # Noticed shaking....try to stabilize
-        time.sleep(.25)      # Give it time to get into position
+        time.sleep(1)      # Give it time to get into position
         
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
