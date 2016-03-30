@@ -55,11 +55,12 @@ def servo_int():
         avg_sum = 0
         #disable_servo()     # Noticed shaking....try to stabilize
         time.sleep(1)      # Give it time to get into position
-        
+        print(str(a_ang))
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
         #Remove min/max numbers - its fine if the number dup
+        print(dist_l)
         dist_l.remove(max(dist_l))
         dist_l.remove(min(dist_l))
         dist = sum(dist_l) / float(len(dist_l))
