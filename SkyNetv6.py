@@ -19,13 +19,13 @@ arg_rot_fwd = 20                # number of encoder going fwd (roughly 1 per cm)
 arg_rot_side = 8                # number of encoder to make a 90 turn
 arg_rot_bck = 16                # number of encoder to make a 180 turn
 arg_robot_speed = 150           # Speed
-arg_decisions = 5              # Number of times we loop through the program before breaking
+arg_decisions = 1              # Number of times we loop through the program before breaking
 # -- ---------------------------
 
 #Fixed variables
 # -- ---------------------------
 full_scan = 180                 # Full Degree range with servo
-end_servo_pos = 180                  # Degree to finish from (due to mounting)
+end_servo_pos = 160                  # Degree to finish from (due to mounting)
 middle_scan = 90                # Degree looking forward (90 is not straight - using 70)
 start_servo_pos=0                    # Degree to start from (due to mounting)
 increm = 20                     # Degrees to increment via servo
