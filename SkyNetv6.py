@@ -207,7 +207,7 @@ if len(args) == 6:  #Use defaults if arguments don't match
 print "Press ENTER to begin"
 raw_input()				#Wait for input to start
 set_speed(arg_robot_speed)
-enable_servo()
+#enable_servo()
 
 while True:
     servo_int()
@@ -218,5 +218,5 @@ while True:
     if tracker > arg_decisions:
         break
     
-disable_servo()
+#disable_servo()
 
