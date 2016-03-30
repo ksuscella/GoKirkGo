@@ -63,6 +63,7 @@ def servo_int():
         dist_l.remove(max(dist_l))
         dist_l.remove(min(dist_l))
         dist = sum(dist_l) / float(len(dist_l))
+        print(str(a_ang) + ": " + str(dist))
         situation[a_ang] = dist
 
 def send_info():
