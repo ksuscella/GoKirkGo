@@ -49,10 +49,11 @@ my_mac = '192.168.1.105:8889'
 
 def servo_int():
     #Run through scan angles and capture results
-    for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
+    #for a_ang in xrange(start_servo_pos,end_servo_pos+increm,increm):
         dist_l = []
-        servo(a_ang)
+    #   servo(a_ang)
         avg_sum = 0
+        a_ang = 90
         #disable_servo()     # Noticed shaking....try to stabilize
         time.sleep(1)      # Give it time to get into position
         print(str(a_ang))
