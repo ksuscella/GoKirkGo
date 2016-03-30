@@ -7,7 +7,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import logging
-
+#  db.robot.find({},{run_number:1})
 # -- ------------------------
 # Initialize
 logging.basicConfig(level=logging.INFO)
@@ -70,20 +70,20 @@ for document in cursor:
      logging.info("calc angle: " + str(deg))
      #Pull Angles & Distances
      for a_ang, a_dist in m_distance_list.iteritems():
+          if( float(a_ang) % 10 == 0):
+                #Calculate XYs
+                myX = round((float(a_dist)*math.cos(((float(a_ang)+20)*math.pi/180))))
+                myY = round((float(a_dist)*math.sin(((float(a_ang)+20)*math.pi/180))))
         
-        #Calculate XYs
-        myX = (float(a_dist)*math.cos((float(a_ang)*math.pi/180)))
-        myY = (float(a_dist)*math.sin((float(a_ang)*math.pi/180)))
-        
-        graphX.append(myX)
-        graphY.append(myY)
+                graphX.append(myX)
+                graphY.append(myY)
         
         
-plt.plot(graphX,graphY,'x')
-plt.show()
-     #graphX = []
-     #graphY = []
-
+     plt.plot(graphX,graphY,'x')
+     plt.show()
+     graphX = []
+     graphY = []
+     break 
 
 #if deg== 0:
             #0

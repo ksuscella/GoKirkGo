@@ -28,8 +28,8 @@ full_scan = 180                 # Full Degree range with servo
 end_servo_pos = 180                  # Degree to finish from (due to mounting)
 middle_scan = 90                # Degree looking forward (90 is not straight - using 70)
 start_servo_pos=0                    # Degree to start from (due to mounting)
-increm = 1                     # Degrees to increment via servo
-sample = 1                      # Capture more than one distance
+increm = 20                     # Degrees to increment via servo
+sample =7                      # Capture more than one distance
 tracker=0                       # Keeps track of number of times we have looped
 situation = {}                  # keep track of all the distances
 turn_track = 0                  # how many times have we turned & not gone forward
@@ -54,11 +54,15 @@ def servo_int():
         servo(a_ang)
         avg_sum = 0
         #disable_servo()     # Noticed shaking....try to stabilize
-        time.sleep(.1)      # Give it time to get into position
+        time.sleep(.25)      # Give it time to get into position
+        
         for a_sample in xrange(1,sample+1,1):
             avg_sum = avg_sum + us_dist(15)
             dist_l.append(us_dist(15))
-        dist = avg_sum/sample   # Want to do a chk & throw out bogus numbers
+        #Remove min/max numbers - its fine if the number dup
+        dist_l.remove(max(dist_l))
+        dist_l.remove(min(dist_l))
+        dist = sum(dist_l) / float(len(dist_l))
         situation[a_ang] = dist
 
 def send_info():
