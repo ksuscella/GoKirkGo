@@ -85,39 +85,19 @@ for document in cursor:
                 new_dist = a_dist - 15          #reduce by 10cm
         myX = round((float(new_dist)*math.cos(((float(a_ang)+20)*math.pi/180))))
         myY = round((float(new_dist)*math.sin(((float(a_ang)+20)*math.pi/180))))
-        print(str(float(a_ang)+20) + ": " + str(new_dist) + " " + str(a_dist))
-        graphX.append(myX)
-        graphY.append(myY)
+        #print(str(float(a_ang)+20) + ": " + str(new_dist) + " " + str(a_dist))
+        
+        print(str(myX) + ", "+str(myY))
+        
+        print(myX/10)
+        
+        #graphX.append(myX)
+        #graphY.append(myY)
         
         
-plt.plot(graphX,graphY,'x')
-plt.show()
+#plt.plot(graphX,graphY,'x')
+#plt.show()
      #graphX = []
      #graphY = []
      #break 
 
-#if deg== 0:
-            #0
-        #    graphX.append(myX)
-        #    graphY.append(myY + y_adjustment)
-            #print( " orig: " + str(myX) + ", " + str(myY) + " new: " + str(myX) + ", " + str(myY+y_adjustment))
-        #if deg == 270:
-            #270     
-        #    graphX.append(myY*-1)
-        #    graphY.append(myX)  
-        
-        #if deg == 90: 
-            #90    
-        #    graphX.append(myY)
-        #    graphY.append(myX*-1)
-        
-        #if deg == 180:
-            #180
-        #    graphX.append(myX*-1)
-        #    grapyY.append(myY*-1)
-    
-    #print("-----------------------------------")
-    #if deg == 0:
-    #    robot_y = robot_y - m_distance
-    #    y_adjustment = y_adjustment + m_distance
-  
