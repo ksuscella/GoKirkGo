@@ -1,27 +1,23 @@
-import numpy as np
+'''
+Simply display the contents of the webcam with optional mirroring using OpenCV 
+via the new Pythonic cv2 interface.  Press <esc> to quit.
+'''
+
 import cv2
 
-cap = cv2.VideoCapture(0)
+def show_webcam(mirror=False):
+    cam = cv2.VideoCapture(0)
+    while True:
+        ret_val, img = cam.read()
+        if mirror: 
+            img = cv2.flip(img, 1)
+        cv2.imshow('my webcam', img)
+        if cv2.waitKey(1) == 27: 
+            break  # esc to quit
+    cv2.destroyAllWindows()
+    
+def main():
+	show_webcam(mirror=True)
 
-# Define the codec and create VideoWriter object
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-
-while(cap.isOpened()):
-    ret, frame = cap.read()
-    if ret==True:
-        frame = cv2.flip(frame,0)
-
-        # write the flipped frame
-        out.write(frame)
-
-        cv2.imshow('frame',frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    else:
-        break
-
-# Release everything if job is finished
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+if __name__ == '__main__':
+	main()

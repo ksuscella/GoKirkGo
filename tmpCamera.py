@@ -26,13 +26,13 @@ while(True):
         print("captured image")
         break
 
-#cv2.imwrite('testphoto.png', out)
-#cv2.namedWindow('image', cv2.WINDOW_NORMAL)
-#cv2.imshow('image', out)
-small = cv2.resize(out, (0,0), fx=0.5, fy=0.5)
-plt.imshow(small, cmap='gray', interpolation='bicubic')
-plt.xticks([]), plit.yticks([]) # to hide tick values on x and y axis
-plt.show()
+cv2.imwrite('testphoto.png', out)
+cv2.namedWindow('image', cv2.WINDOW_NORMAL)
+cv2.imshow('image', out)
+#small = cv2.resize(out, (0,0), fx=0.5, fy=0.5)
+#plt.imshow(small, cmap='gray', interpolation='bicubic')
+#plt.xticks([]), plit.yticks([]) # to hide tick values on x and y axis
+#plt.show()
 
 cap.release()
 cv2.waitKey(0)
