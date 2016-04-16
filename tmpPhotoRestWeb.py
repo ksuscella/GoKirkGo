@@ -29,9 +29,11 @@ class ImageHandler(tornado.web.RequestHandler):
         # get post data
         file_body = self.request.files['capture.jpg'][0]['body']
         
-        fh = open("/Users/kirk/Documents/GoPiGo/GoKirkGo/imageToSave.png", "wb")
+        fh = open("/Users/kirk/Documents/GoPiGo/GoKirkGo/onWeb.png", "wb")
         fh.write(file_body)
         fh.close()
+        
+        
 
 class RESTHandler(tornado.web.RequestHandler):
     def get(self):

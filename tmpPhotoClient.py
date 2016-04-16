@@ -14,22 +14,15 @@ while(True):
 
     cv2.imshow('frame', rgb)
     if cv2.waitKey(1) & 0xFF == ord('q'):
-        small = cv2.resize(frame, (0,0), fx=0.1, fy=0.1)
-        out = cv2.imwrite('capture.jpg', small)
+        #small = cv2.resize(frame, (0,0), fx=0.1, fy=0.1)
+        out = cv2.imwrite('capture.jpg', frame)
         break
 
-f = open("/Users/kirk/Documents/GoPiGo/GoKirkGo/capture.jpg")
-data = f.read()
-f.close()
+#f = open("/Users/kirk/Documents/GoPiGo/GoKirkGo/capture.jpg")
+#data = f.read()
+#f.close()
 
-
-
-test = base64.b64encode(data)    
-
-#Send findings to laptop
-url = 'http://' + my_mac + '/'
-url = url + '?get_image='+test
-response = requests.get(url)
+r = requests.post('http://localhost:8889/image', files={'capture.jpg': open('/Users/kirk/Documents/GoPiGo/GoKirkGo/capture.jpg', 'rb')})
 
 cap.release()
 cv2.destroyAllWindows()
