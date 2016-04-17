@@ -23,6 +23,15 @@ import StringIO
 client = MongoClient()
 db = client.kirk
 
+
+#os.path.join(os.path.dirname(__file__)
+settings = {
+    "static_path": "/Users/kirk/Documents/GoPiGo/GoKirkGo/web", "static",
+    "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
+    "login_url": "/login",
+    "xsrf_cookies": True,
+}
+
 class ImageHandler(tornado.web.RequestHandler):
     def post(self):
         logging.error("posting")
@@ -51,7 +60,6 @@ class RESTHandler(tornado.web.RequestHandler):
 application = tornado.web.Application([
     (r"/", RESTHandler),
     (r"/image", ImageHandler)
-    
 ])
  
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+#http://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
+
 grid = [[0, 0, 0, 0, 0, 1],
         [1, 1, 0, 0, 0, 1],
         [0, 0, 0, 1, 0, 0],
