@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SkyNet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap336/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/SkyNet.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    </nav>
+    
+    <div class="starter-template">
+
+
+    <!-- <div class="page-header">
+        <h1>Panels</h1>
+      </div> -->
+    
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Maze</h3>
+            </div>
+            <div class="panel-body">
+              <canvas id="myCanvas" width="200" height="200"></canvas>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Logging</h3>
+            </div>
+            <div class="panel-body">
+              <p><button onclick="delayedAlert();">Go Robot Go</button></p>
+              <p><button onclick="clearAlert();">Stop Robot Stop</button></p>
+              panel panel-primary
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Image</h3>
+            </div>
+            <div class="panel-body">
+              panel panel-success
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Findings</h3>
+            </div>
+            <div class="panel-body panel-SCROLL" id="findings">
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+        
+      </div>
+    </div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="vendor/bootstrap336/js/bootstrap.min.js"></script>
+    <script src="js/maze.js"></script>
+  </body>
+</html>
