@@ -10,10 +10,12 @@ class RESTHandler(tornado.web.RequestHandler):
         self.write('{"return":"good"}')
 
 static_path = "/Users/kirk/Documents/GoPiGo/GoKirkGo/web/"
+image_path = "/Users/kirk/Documents/GoPiGo/image_cache/"
 
 application = tornado.web.Application([
     (r"/", RESTHandler),
-    (r"/web/(.*)",tornado.web.StaticFileHandler, {"path": static_path})
+    (r"/web/(.*)",tornado.web.StaticFileHandler, {"path": static_path}),
+    (r"/image/(.*)",tornado.web.StaticFileHandler, {"path": image_path}) 
 ])
  
 if __name__ == "__main__":

@@ -50,6 +50,7 @@ function slowAlert() {
     showConsole("Selected: " + numX + ", " + numY + "(" + ang + ")")
     //showConsole("coordinates selected: " + numX + ", " + numY)
     
+    setImage();
     
     //Draw Triangle to show direction
     ctx.save();
@@ -88,6 +89,11 @@ Math.radians = function(degrees) {
 function clearAlert() {
     //code
     window.clearTimeout(timeoutID);
+}
+
+function setImage() {
+    //code
+    var com = document.getElementById("main_image").src = '/image/bob.png';
 }
 
 function showConsole(alerts) {
