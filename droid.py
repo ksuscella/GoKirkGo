@@ -16,7 +16,7 @@ def main():
         normal()    #return back to waiting
         main()      #recursive method
     if status == 'nope':
-        time.sleep(30)   # Delay for 1 minute (60 seconds). (JUST WAITING AROUND)
+        time.sleep(10)   # Delay for 1 minute (60 seconds). (JUST WAITING AROUND)
         main()
     if status == 'quit':
         print "These are not the droids you were looking for"
