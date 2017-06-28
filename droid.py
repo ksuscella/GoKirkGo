@@ -24,11 +24,13 @@ def skynet():
     
     enc_tgt(1,1,90)
     fwd()
-    #time.sleep(10)
+    time.sleep(10)
     enc_tgt(1,0,16)
+    fwd()
     #compass adjustment
-    #time.sleep(5)
+    time.sleep(5)
     enc_tgt(1,1,90)
+    fwd()
 def normal():
     url_path = 'https://bluepen.herokuapp.com/?type=set&getValue=nope'
         
