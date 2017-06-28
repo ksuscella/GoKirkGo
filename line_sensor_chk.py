@@ -39,7 +39,4 @@ count = 0
 while True:
 	l0,l1,l2,l3,l4=get_sensorval()
 	print l0,l1,l2,l3,l4
-	time.sleep(.05)
-    count = count + 1
-    if count > 10:
-        break
+
