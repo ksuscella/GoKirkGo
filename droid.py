@@ -11,6 +11,7 @@ def main():
     if status == 'gopi':
         # Execute robot command
         print("execute robot")
+        skynet()
         normal()    #return back to waiting
         main()      #recursive method
     if status == 'nope':
@@ -18,6 +19,15 @@ def main():
         main()
     if status == 'quit':
         print "These are not the droids you were looking for"
+def skynet():
+    
+    enc_tgt(1,1,90)
+    fwd()
+    time.sleep(10)
+    enc_tgt(1,0,16)
+    #compass adjustment
+    time.sleep(5)
+    enc_tgt(1,1,90)
 def normal():
     url_path = 'https://bluepen.herokuapp.com/?type=set&getValue=nope'
         
