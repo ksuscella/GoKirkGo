@@ -24,13 +24,12 @@ def skynet():
     
     enc_tgt(1,1,90)
     fwd()
-    time.sleep(10)
-    enc_tgt(1,1,8)
+    time.sleep(2)
     left_rot()
-    enc_tgt(1,1,8)
+    time.sleep(1)
     left_rot()
     #compass adjustment
-    time.sleep(5)
+    time.sleep(1)
     enc_tgt(1,1,90)
     fwd()
 def normal():
