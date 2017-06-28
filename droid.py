@@ -25,8 +25,10 @@ def skynet():
     enc_tgt(1,1,90)
     fwd()
     time.sleep(10)
-    enc_tgt(1,0,16)
-    fwd()
+    enc_tgt(1,1,8)
+    left_rot()
+    enc_tgt(1,1,8)
+    left_rot()
     #compass adjustment
     time.sleep(5)
     enc_tgt(1,1,90)
