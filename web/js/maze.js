@@ -101,4 +101,7 @@ function showConsole(alerts) {
     var com = document.getElementById("findings").innerHTML;
     document.getElementById("findings").innerHTML = com + "<p class='p-left'>" + Date() + " " + alerts + "</p>";
     
+    var com = document.getElementById("logging").innerHTML;
+    document.getElementById("logging").innerHTML = com + "<p class='p-left'>" + Date() + " " + alerts + "</p>";
+
 }

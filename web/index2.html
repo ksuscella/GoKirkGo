@@ -22,30 +22,46 @@
     
     <!-- <button onclick="clearAlert();">Stop Robot Stop</button> -->
     
-  <div class="starter-template">
-    <div class="row">
-      <div class="col-md-6 well well-sm">
-        <h3 class="panel-title">Maze</h3>
-        <canvas id="myCanvas" height="200" width="200"></canvas>
-      </div>
-      <div class="col-md-6 well well-sm">
-        <h3 class="panel-title">Image</h3>
-        <img src="" alt="" id="main_image" height="200" width="200">
+    <div class="starter-template">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Maze</h3>
+            </div>
+            <div class="panel-body">
+              <canvas id="myCanvas" <!--width="200" height="200"--> ></canvas>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Logging</h3>
+            </div>
+            <div class="panel-body panel-SCROLL" id="logging"</div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Image</h3>
+            </div>
+            <div class="panel-body">
+              <img src="" alt="" id="main_image" <!-- height="200" width="200"--> >
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Findings</h3>
+            </div>
+            <div class="panel-body panel-SCROLL" id="findings">
+            
+            </div>
+          </div>
+          
+        </div><!-- /.col-sm-4 -->
+        
       </div>
     </div>
-   
-    <div class="row">
-      <div class="col-md-6 well well-sm">
-        <h3 class="panel-title">Findings</h3>
-        <div class="panel-body panel-SCROLL" id="findings"></div>
-      </div>
-      <div class="col-md-6 well well-sm">
-        <h3 class="panel-title">Logging</h3>
-        <div class="panel-body panel-SCROLL" id="logging"</div>
-      </div>
-    </div>
-  </div>
-      
     
 <!-- Bootstrap core JavaScript
     ================================================== -->
